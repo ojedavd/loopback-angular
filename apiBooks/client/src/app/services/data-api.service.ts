@@ -3,16 +3,19 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from "rxjs/operators";
 
+import { BookInterface } from '../models/book-interface';
+
 import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataApiService {
-  books: Observable<any>;
-  book: Observable<any>;
 
   constructor(private http: HttpClient, private authService: AuthService) { }
+
+  books: Observable<any>;
+  book: Observable<any>;
 
   headers: HttpHeaders = new HttpHeaders({    
     'Content-Type': 'application/json',
@@ -34,13 +37,13 @@ export class DataApiService {
     return (this.books = this.http.get(url_api));
   }
 
-  saveBook(book) {
+  saveBook(book: BookInterface) {
     // TODO: obtener token
     // TODO: not null
     let token = this.authService.getToken();
 
     const url_api = `http://localhost:3000/api/books?access_token=${token}`;
-    return this.http.post(url_api, book, { headers: this.headers })
+    return this.http.post<BookInterface>(url_api, book, { headers: this.headers })
       .pipe(map(data => data));
   }
 
@@ -52,7 +55,7 @@ export class DataApiService {
     const bookId = book.bookId;
     const url_api = `http://localhost:3000/api/books/${bookId}/?access_token=${token}`;
     return this.http
-      .put(url_api, book, { headers: this.headers })
+      .put<BookInterface>(url_api, book, { headers: this.headers })
       .pipe(map(data => data));
   }
 
@@ -62,7 +65,7 @@ export class DataApiService {
     let token = this.authService.getToken();
     const url_api = `http://localhost:3000/api/books/${id}/?access_token=${token}`;
     return this.http
-      .delete(url_api, { headers: this.headers })
+      .delete<BookInterface>(url_api, { headers: this.headers })
       .pipe(map(data => data));
   }
 }
