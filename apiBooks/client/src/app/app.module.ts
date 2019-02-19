@@ -16,7 +16,9 @@ import { Page404Component } from './components/page404/page404.component';
 
 // Services
 import { DataApiService } from './services/data-api.service';
+
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -32,11 +34,7 @@ import { HttpClientModule } from '@angular/common/http';
     ProfileComponent,
     Page404Component
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [DataApiService],
   bootstrap: [AppComponent]
 })
