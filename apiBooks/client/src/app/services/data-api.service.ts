@@ -22,8 +22,13 @@ export class DataApiService {
      Authorization: this.authService.getToken()
   });
 
-  getAllBooks(){
-    const url_api = "http://localhost:3000/api/books";
+  getAllBooks() {
+    const url_api = `http://localhost:3000/api/books`;
+    return this.http.get(url_api);
+  }
+  
+  getNotOffers() {
+    const url_api = `http://localhost:3000/api/books?filter[where][oferta]=0`;
     return this.http.get(url_api);
   }
   
