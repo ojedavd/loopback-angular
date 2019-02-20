@@ -16,6 +16,18 @@ export class DataApiService {
 
   books: Observable<any>;
   book: Observable<any>;
+  
+  public selectedBook: BookInterface = {
+    id: null,
+    titulo: '',
+    idioma: '',
+    descripcion: '',
+    portada: '',
+    precio: '',
+    link_amazon: '',
+    autor: '',
+    oferta: ''
+  };
 
   headers: HttpHeaders = new HttpHeaders({    
     'Content-Type': 'application/json',
