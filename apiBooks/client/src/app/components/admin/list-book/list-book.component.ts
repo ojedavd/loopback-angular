@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataApiService } from '../../../services/data-api.service';
 import { BookInterface } from '../../../models/book-interface';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-list-book',
@@ -26,5 +27,23 @@ export class ListBookComponent implements OnInit {
     if (confirm('Are you sure to delete?')) {
       this.dataApiService.deleteBook(id).subscribe();
     }
+  }
+
+  onPreUpdateBook(book: BookInterface): void {
+    this.dataApiService.selectedBook = Object.assign({}, book);
+  }
+
+  resetForm(bookForm?: NgForm): void {
+    this.dataApiService.selectedBook = {
+      id: null,
+      titulo: '',
+      idioma: '',
+      descripcion: '',
+      portada: '',
+      precio: '',
+      link_amazon: '',
+      autor: '',
+      oferta: ''
+    };
   }
 }
