@@ -9,15 +9,17 @@ import { RegisterComponent } from './components/user/register/register.component
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { Page404Component } from './components/page404/page404.component';
 
+import { AuthGuard } from './guards/auth.guard';
+
 const routes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'offers', component: OffersComponent}, // only users auth
-  {path: 'book/:id', component: DetailsBookComponent},
-  {path: 'admin/list-books', component: ListBookComponent}, // only users auth
-  {path: 'user/login', component: LoginComponent},
-  {path: 'user/register', component: RegisterComponent},
-  {path: 'user/profile', component: ProfileComponent}, // only users auth
-  {path: '**', component: Page404Component}
+  { path: '', component: HomeComponent },
+  { path: 'offers', component: OffersComponent, canActivate: [AuthGuard] }, // TODO: only users auth
+  { path: 'book/:id', component: DetailsBookComponent },
+  { path: 'admin/list-books', component: ListBookComponent, canActivate: [AuthGuard] }, // TODO: only users auth
+  { path: 'user/login', component: LoginComponent },
+  { path: 'user/register', component: RegisterComponent },
+  { path: 'user/profile', component: ProfileComponent, canActivate: [AuthGuard] }, // TODO: only users auth
+  { path: '**', component: Page404Component }
 ];
 
 @NgModule({
