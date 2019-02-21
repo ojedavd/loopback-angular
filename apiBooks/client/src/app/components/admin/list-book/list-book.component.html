@@ -15,7 +15,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let book of books; index as i">
+        <tr *ngFor="let book of books | paginate: {itemsPerPage: 7, currentPage: pageActual}; index as i">
 
           <th scope="row"> {{i+1}}</th>
           <td>{{book.titulo}}</td>
@@ -33,6 +33,7 @@
 
       </tbody>
     </table>
+    <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
   </div>
 </div>
 <app-modal></app-modal>
