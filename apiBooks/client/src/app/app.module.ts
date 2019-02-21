@@ -15,7 +15,9 @@ import { ProfileComponent } from './components/user/profile/profile.component';
 import { Page404Component } from './components/page404/page404.component';
 
 // Services
-import { DataApiService } from './services/data-api.service';
+import { DataApiService } from 'src/app/services/data-api.service';
+import { ModalComponent } from './components/modal/modal.component';
+import { TruncateTextPipe } from './pipes/truncate-text.pipe';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -34,7 +36,8 @@ import { ModalComponent } from './components/modal/modal.component';
     RegisterComponent,
     ProfileComponent,
     Page404Component,
-    ModalComponent
+    ModalComponent,
+    TruncateTextPipe
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [DataApiService],

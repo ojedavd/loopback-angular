@@ -27,6 +27,7 @@ export class RegisterComponent implements OnInit {
           const token = user.id;
           this.authService.setToken(token);
           this.router.navigate(['/user/profile']);
+          location.reload();
         });       
   }
 }
