@@ -21,7 +21,6 @@ import { TruncateTextPipe } from './pipes/truncate-text.pipe';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
