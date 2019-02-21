@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { RouterModule, Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'front';
+  constructor(private router: Router) {
+      this.router.events.subscribe(event => {
+          if (event instanceof NavigationEnd) {
+              if (event.url.match('/user/') || event.url.match('/admin/')) {
+                  this.hideElement = true;
+              } else {
+                  this.hideElement = false;
+              }
+          }
+      });
+  }
+
+  public hideElement = false;
+
 }
